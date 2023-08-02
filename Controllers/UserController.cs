@@ -2,7 +2,7 @@ using WebApi.Models;
 using WebApi.data;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
-using Newtonsoft.Json;
+using BCrypt.Net;
 
 namespace WebApi.Controllers;
 
@@ -12,35 +12,57 @@ class User : Controller
     public static string newUser([FromBody] modelUser User)
     {
 
+        // HASH PASSOWRD
+
+        User.password = BCrypt.Net.BCrypt.HashPassword(User.password);
+
         // ADD A NEW USER IN THE DATABASE
 
-        SqlConnection conexion = new SqlConnection(Conexion.uri);
-
-        string query = $"INSERT INTO users ( user_name, email, token) VALUES ('{User.name}', '{User.email}', '{User.token}')";
-
-        SqlCommand cmd = new SqlCommand(query, conexion);
-
-        try
+        using (SqlConnection conexion = new SqlConnection(Conexion.uri))
         {
-            conexion.Open();
 
-            SqlCommand usuario = new SqlCommand($"SELECT * FROM users WHERE email = {User.email};", conexion);
+            string query = $"INSERT INTO users ( user_name, email, token,  u_password) VALUES ('{User.name}', '{User.email}', '{User.token}', '{User.password}')";
 
-            SqlDataReader response = usuario.ExecuteReader();
+            using (SqlCommand cmd = new SqlCommand(query, conexion))
+            {
+                using (SqlCommand usuario = new SqlCommand($"SELECT * FROM users WHERE email = '{User.email}';", conexion))
+                {
 
-            if(response.HasRows) {
-                return "El email ya existe";
+                    try
+                    {
+                        conexion.Open();
+
+                        // VERIFY, IF WE ALREADY HAVE THAT USER
+
+                        SqlDataReader response = usuario.ExecuteReader();
+
+                        if (response.Read())
+                        {
+                            return "EL USUARIO YA EXISTE";
+                        }
+
+                        // IF NOT EXITS, IT WILL ADD
+
+                        cmd.ExecuteNonQuery();
+
+                        return "AGREGADO CORRECTAMENTE";
+
+                    }
+                    catch (Exception e)
+                    {
+                        return "Ha ocurrido un error " + e.Message + e.Source;
+                    }
+                }
             }
-
-
-            cmd.ExecuteNonQuery();
-
-            return "AGREGADO CORRECTAMENTE";
-
         }
-        catch (Exception e)
-        {
-            return "Ha ocurrido un error " + e.Message;
-        }
+
+    }
+
+    // METHOD TO VERIFY THE USER
+    public static string verifyUser()
+    {
+
+        return "";
+
     }
 }

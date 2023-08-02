@@ -1,30 +1,29 @@
 namespace WebApi.Models
 {
-
     class modelUser
     {
-        public modelUser(string name, string email)
+        public modelUser(string name, string email, string password)
         {
             this.name = name;
 
             this.email = email;
 
+            this.password = password;
+
             this.token = getToken();
         }
         public string name { get; set; }
         public string email { get; set; }
+
+        public string password { get; set; }
         public string token { get; set; }
 
         // GENERATE A TOKEN
         public static string getToken()
         {
 
-            DateTime timeNow = DateTime.Now;
-
             char[] alphabet = new char[] {
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1',
-           '2', '3', '4', '5', '6', '7', '8', '9'};
+            'a', 'e', 'i', 'o', 'u', '1',  '2', '3', '4', '5', '6', '7', '8', '9'};
 
             string token = "";
 
@@ -32,10 +31,17 @@ namespace WebApi.Models
             {
                 int random = new Random().Next(0, alphabet.Length);
 
+                if(i % 4 == 0 && i != 0){
+                    token += '-';
+                }
+
                 token += alphabet[random];
             }
 
             return token;
         }
+
+        // HASH PASSWORD
+        
     }
 }
