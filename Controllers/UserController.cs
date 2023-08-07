@@ -49,11 +49,10 @@ public class UserController : ControllerBase
 
                         using (SqlDataReader response = usuario.ExecuteReader())
                         {
-
                             if (response.Read())
 
                             {
-                                return BadRequest("EL USUARIO YA EXISTE");
+                                return BadRequest(new { msg = "EL USUARIO YA EXISTE" });
                             }
 
                         }
@@ -61,11 +60,11 @@ public class UserController : ControllerBase
 
                         cmd.ExecuteNonQuery();
 
-                        return Ok("AGREGADO CORRECTAMENTE");
+                        return Ok(new { msg = "AGREGADO CORRECTAMENTE" });
                     }
                     catch (Exception e)
                     {
-                        return BadRequest("Ha ocurrido un error" + e.Message);
+                        return BadRequest(new { msg = "Ha ocurrido un error " + e.Message });
                     }
                 }
             }
@@ -76,7 +75,7 @@ public class UserController : ControllerBase
     // METHOD TO VERIFY THE USER
     [HttpGet("{token}")]
     public ActionResult VerificarToken([FromRoute] string token)
-    {      
+    {
         using (SqlConnection conexion = new SqlConnection(Conexion.uri))
         {
             string query = "UPDATE users SET confirmed = 1, token = null WHERE token = @Token";
@@ -94,19 +93,19 @@ public class UserController : ControllerBase
 
                     // if, there are not any change
 
-                    if(response == 0)
+                    if (response == 0)
                     {
-                        return BadRequest("EL TOKEN NO ES VALIDO");
+                        return BadRequest(new { msg = "EL TOKEN NO ES VALIDO" });
                     }
 
-                    return Ok("CONFIRMADO CORRECTAMENTE " + response);
-                }           
+                    return Ok(new { msg = "CONFIRMADO CORRECTAMENTE" });
+                }
 
             }
             catch (Exception e)
             {
-                return BadRequest("Ha ocurrido un error" + e.Message);
+                return BadRequest(new { msg = "Ha ocurrido un error " + e.Message });
             }
-        }      
+        }
     }
 }
