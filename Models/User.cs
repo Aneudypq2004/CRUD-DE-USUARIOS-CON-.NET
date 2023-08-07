@@ -1,6 +1,6 @@
 namespace WebApi.Models
 {
-    class modelUser
+    public class modelUser
     {
         public modelUser(string name, string email, string password)
         {
@@ -13,6 +13,7 @@ namespace WebApi.Models
             this.token = getToken();
         }
         public string name { get; set; }
+
         public string email { get; set; }
 
         public string password { get; set; }
@@ -23,11 +24,11 @@ namespace WebApi.Models
         {
 
             char[] alphabet = new char[] {
-            'a', 'e', 'i', 'o', 'u', '1',  '2', '3', '4', '5', '6', '7', '8', '9'};
+            'a', 'e', 'i', 'o', 'u', '1',  '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
             string token = "";
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 30; i++)
             {
                 int random = new Random().Next(0, alphabet.Length);
 

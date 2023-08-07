@@ -39,3 +39,6 @@ as
 SENTENCIAS SQL;
 
 GO
+
+
+SELECT * FROM users;

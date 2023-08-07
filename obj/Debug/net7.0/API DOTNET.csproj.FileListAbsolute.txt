@@ -33,3 +33,38 @@ C:\Users\M18-0\OneDrive\Escritorio\API DOTNET\bin\Debug\net7.0\runtimes\win\lib\
 C:\Users\M18-0\OneDrive\Escritorio\API DOTNET\obj\Debug\net7.0\API DOTNET.csproj.CopyComplete
 C:\Users\M18-0\OneDrive\Escritorio\API DOTNET\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\M18-0\OneDrive\Escritorio\API DOTNET\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\appsettings.json
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\API DOTNET.exe
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\API DOTNET.deps.json
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\API DOTNET.runtimeconfig.json
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\API DOTNET.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\API DOTNET.pdb
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\System.Data.SqlClient.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.csproj.AssemblyReference.cache
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.AssemblyInfoInputs.cache
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.AssemblyInfo.cs
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.csproj.CoreCompileInputs.cache
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\staticwebassets\msbuild.API DOTNET.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\staticwebassets\msbuild.build.API DOTNET.props
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.API DOTNET.props
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.API DOTNET.props
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\scopedcss\bundle\API DOTNET.styles.css
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.csproj.CopyComplete
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\refint\API DOTNET.dll
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.pdb
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\API DOTNET.genruntimeconfig.cache
+C:\Users\M18-0\OneDrive\Escritorio\CRUD USER\obj\Debug\net7.0\ref\API DOTNET.dll

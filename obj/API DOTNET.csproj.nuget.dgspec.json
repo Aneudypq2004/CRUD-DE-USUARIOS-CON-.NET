@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\M18-0\\OneDrive\\Escritorio\\API DOTNET\\API DOTNET.csproj": {}
+    "C:\\Users\\M18-0\\OneDrive\\Escritorio\\CRUD USER\\API DOTNET.csproj": {}
   },
   "projects": {
-    "C:\\Users\\M18-0\\OneDrive\\Escritorio\\API DOTNET\\API DOTNET.csproj": {
+    "C:\\Users\\M18-0\\OneDrive\\Escritorio\\CRUD USER\\API DOTNET.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\M18-0\\OneDrive\\Escritorio\\API DOTNET\\API DOTNET.csproj",
+        "projectUniqueName": "C:\\Users\\M18-0\\OneDrive\\Escritorio\\CRUD USER\\API DOTNET.csproj",
         "projectName": "API DOTNET",
-        "projectPath": "C:\\Users\\M18-0\\OneDrive\\Escritorio\\API DOTNET\\API DOTNET.csproj",
+        "projectPath": "C:\\Users\\M18-0\\OneDrive\\Escritorio\\CRUD USER\\API DOTNET.csproj",
         "packagesPath": "C:\\Users\\M18-0\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\M18-0\\OneDrive\\Escritorio\\API DOTNET\\obj\\",
+        "outputPath": "C:\\Users\\M18-0\\OneDrive\\Escritorio\\CRUD USER\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\M18-0\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\M18-0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }
