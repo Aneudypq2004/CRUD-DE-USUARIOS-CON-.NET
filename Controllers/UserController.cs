@@ -1,5 +1,6 @@
 using WebApi.Models;
 using WebApi.data;
+using WebApi.Helper;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using BCrypt.Net;
@@ -18,6 +19,10 @@ public class UserController : ControllerBase
 
         User.password = BCrypt.Net.BCrypt.HashPassword(User.password);
 
+        //GENERATE A TOKEN
+
+        string token = Token.getToken();
+
         // ADD A NEW USER IN THE DATABASE
 
         using (SqlConnection conexion = new SqlConnection(Conexion.uri))
@@ -25,14 +30,13 @@ public class UserController : ControllerBase
 
             string query = $"INSERT INTO users ( user_name, email, token,  u_password) VALUES (@user_name, @email, @token, @userPassword)";
 
-
             using (SqlCommand cmd = new SqlCommand(query, conexion))
             {
                 // PARAMETERS
 
                 cmd.Parameters.AddWithValue("@user_name", User.name);
                 cmd.Parameters.AddWithValue("@email", User.email);
-                cmd.Parameters.AddWithValue("@token", User.token);
+                cmd.Parameters.AddWithValue("@token", token);
                 cmd.Parameters.AddWithValue("@userPassword", User.password);
 
                 using (SqlCommand usuario = new SqlCommand($"SELECT * FROM users WHERE email = @email;", conexion))
@@ -104,7 +108,7 @@ public class UserController : ControllerBase
             }
             catch (Exception e)
             {
-                return BadRequest(new { msg = "Ha ocurrido un error " + e.Message });
+                return BadRequest(new { msg = "HA OCURRIDO UN ERROR" + e.Message });
             }
         }
     }
