@@ -11,7 +11,10 @@ namespace WebApi.Controllers;
 [ApiController]
 public class UserController : ControllerBase
 {
-    // ADD A NEW USER
+    /// <summary>
+    /// ALLOW ADD A NEW USER
+    /// </summary>
+  
     [HttpPost]
     public ActionResult NewUser([FromBody] modelUser User)
     {
@@ -25,91 +28,137 @@ public class UserController : ControllerBase
 
         // ADD A NEW USER IN THE DATABASE
 
-        using (SqlConnection conexion = new SqlConnection(Conexion.uri))
+        using SqlConnection conexion = new SqlConnection(Conexion.uri);
+
+        string query = $"INSERT INTO users ( user_name, email, token,  u_password) VALUES (@user_name, @email, @token, @userPassword)";
+
+        using SqlCommand cmd = new SqlCommand(query, conexion);
+
+        // PARAMETERS
+
+        cmd.Parameters.AddWithValue("@user_name", User.name);
+        cmd.Parameters.AddWithValue("@email", User.email);
+        cmd.Parameters.AddWithValue("@token", token);
+        cmd.Parameters.AddWithValue("@userPassword", User.password);
+
+        using SqlCommand usuario = new SqlCommand($"SELECT * FROM users WHERE email = @email;", conexion);
+
+        // PARAMETERS
+
+        usuario.Parameters.AddWithValue("@email", User.email);
+
+        try
         {
+            conexion.Open();
 
-            string query = $"INSERT INTO users ( user_name, email, token,  u_password) VALUES (@user_name, @email, @token, @userPassword)";
+            // VERIFY, IF WE ALREADY HAVE THAT USER~
 
-            using (SqlCommand cmd = new SqlCommand(query, conexion))
+            using (SqlDataReader response = usuario.ExecuteReader())
             {
-                // PARAMETERS
-
-                cmd.Parameters.AddWithValue("@user_name", User.name);
-                cmd.Parameters.AddWithValue("@email", User.email);
-                cmd.Parameters.AddWithValue("@token", token);
-                cmd.Parameters.AddWithValue("@userPassword", User.password);
-
-                using (SqlCommand usuario = new SqlCommand($"SELECT * FROM users WHERE email = @email;", conexion))
+                if (response.Read())
                 {
-                    // PARAMETERS
-
-                    usuario.Parameters.AddWithValue("@email", User.email);
-
-                    try
-                    {
-                        conexion.Open();
-
-                        // VERIFY, IF WE ALREADY HAVE THAT USER~
-
-                        using (SqlDataReader response = usuario.ExecuteReader())
-                        {
-                            if (response.Read())
-
-                            {
-                                return BadRequest(new { msg = "EL USUARIO YA EXISTE" });
-                            }
-
-                        }
-                        // IF NOT EXITS, IT WILL ADD
-
-                        cmd.ExecuteNonQuery();
-
-                        return Ok(new { msg = "AGREGADO CORRECTAMENTE" });
-                    }
-                    catch (Exception e)
-                    {
-                        return BadRequest(new { msg = "Ha ocurrido un error " + e.Message });
-                    }
+                    return BadRequest(new { msg = "EL USUARIO YA EXISTE" });
                 }
+
             }
+            // IF NOT EXITS, IT WILL ADD
+
+            cmd.ExecuteNonQuery();
+
+            return Ok(new { msg = "AGREGADO CORRECTAMENTE" });
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new { msg = "Ha ocurrido un error " + e.Message });
         }
 
     }
 
-    // METHOD TO VERIFY THE USER
+    /// <summary>
+    /// METHOD TO VERIFY THE USER
+    /// </summary>
+ 
     [HttpGet("{token}")]
     public ActionResult VerificarToken([FromRoute] string token)
     {
-        using (SqlConnection conexion = new SqlConnection(Conexion.uri))
+        using SqlConnection conexion = new SqlConnection(Conexion.uri);
+
+        string query = "UPDATE users SET confirmed = 1, token = null WHERE token = @Token";
+
+        try
         {
-            string query = "UPDATE users SET confirmed = 1, token = null WHERE token = @Token";
+            conexion.Open();
 
-            try
+            using SqlCommand cmd = new SqlCommand(query, conexion);
+
+            cmd.Parameters.AddWithValue("@Token", token);
+
+            int response = cmd.ExecuteNonQuery();
+
+            // if, there are not any change
+
+            if (response == 0)
             {
-                conexion.Open();
-
-                using (SqlCommand cmd = new SqlCommand(query, conexion))
-                {
-
-                    cmd.Parameters.AddWithValue("@Token", token);
-
-                    int response = cmd.ExecuteNonQuery();
-
-                    // if, there are not any change
-
-                    if (response == 0)
-                    {
-                        return BadRequest(new { msg = "EL TOKEN NO ES VALIDO" });
-                    }
-
-                    return Ok(new { msg = "CONFIRMADO CORRECTAMENTE" });
-                }
-
+                return BadRequest(new { msg = "EL TOKEN NO ES VALIDO" });
             }
-            catch (Exception e)
-            {
-                return BadRequest(new { msg = "HA OCURRIDO UN ERROR" + e.Message });
-            }
+
+            return Ok(new { msg = "CONFIRMADO CORRECTAMENTE" });
+
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new { msg = "HA OCURRIDO UN ERROR" + e.Message });
         }
     }
+
+    /// <summary>
+    /// ADD THE FORGET-PASSWORD METHOD
+    /// </summary>
+
+    [HttpPost("/forget-password")]
+    public ActionResult ForgetPassword([FromBody] string email)
+    {
+        string query = "UPDATE user SET token = @token WHERE @email";
+
+        // GENERATE A NEW TOKEN
+
+        string token = Token.getToken();
+
+        using SqlConnection conexion = new SqlConnection(Conexion.uri);
+
+        using SqlCommand cmd = new SqlCommand(query, conexion);
+
+        // ADD PARAMETERS
+
+        cmd.Parameters.AddWithValue("@token", token);
+
+        cmd.Parameters.AddWithValue("@email", email);
+
+        try
+        {
+            conexion.Open();
+
+            int response = cmd.ExecuteNonQuery();
+            
+            if(response == 0)
+            {
+                return BadRequest(new { msg = "THE USER DOES NOT EXISTS" });
+            }
+
+            // SEND A EMAIL
+
+            return Ok(new { msg = "CHECK YOUR EMAIL" });                     
+        }
+        catch (Exception e)
+        {
+            return BadRequest(new { msg = e.Message });
+
+        }
+    }
+
+    /// <summary>
+    /// UPDATE THE NEW USER
+    /// </summary>
+    /// 
+    
 }
