@@ -13,7 +13,7 @@ public class UserController : ControllerBase
 {
     // ADD A NEW USER
     [HttpPost]
-    public ActionResult newUser([FromBody] modelUser User)
+    public ActionResult NewUser([FromBody] modelUser User)
     {
         // HASH PASSOWRD
 
